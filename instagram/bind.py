@@ -1,7 +1,7 @@
 import urllib
-from oauth2 import OAuth2Request
+from .oauth2 import OAuth2Request
 import re
-from json_import import simplejson
+from .json_import import simplejson
 
 re_path_template = re.compile('{\w+}')
 
