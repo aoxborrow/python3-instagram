@@ -66,7 +66,7 @@ class OAuth2AuthExchangeRequest(object):
         }
         if scope:
             client_params.update(scope=' '.join(scope))
-        url_params = urllib.urlencode(client_params)
+        url_params = urllib.parse.urlencode(client_params)
         return "%s?%s" % (self.api.authorize_url, url_params)
 
     def _data_for_exchange(self, code=None, username=None, password=None, scope=None, user_id=None):
@@ -136,7 +136,7 @@ class OAuth2Request(object):
         return (self._full_url(path, include_secret) + self._full_query_with_params(params))
 
     def _full_query_with_params(self, params):
-        params = ("&" + urllib.urlencode(params)) if params else ""
+        params = ("&" + urllib.parse.urlencode(params)) if params else ""
         return params
 
     def _auth_query(self, include_secret=False):
@@ -149,7 +149,7 @@ class OAuth2Request(object):
             return base
 
     def _post_body(self, params):
-        return urllib.urlencode(params)
+        return urllib.parse.urlencode(params)
 
     def _encode_multipart(params, files):
         boundary = "MuL7Ip4rt80uND4rYF0o"

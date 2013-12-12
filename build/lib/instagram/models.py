@@ -10,7 +10,8 @@ class ApiModel(object):
         return cls(**entry_str_dict)
 
     def __repr__(self):
-        return unicode(self).encode('utf8')
+#        return unicode(self).encode('utf8')
+        return str(self).encode('utf8')
 
 
 class Image(ApiModel):
@@ -28,7 +29,9 @@ class Media(ApiModel):
 
     def __init__(self, id=None, **kwargs):
         self.id = id
-        for key, value in kwargs.iteritems():
+#        for key, value in kwargs.iteritems():
+        for key in kwargs.keys():
+            value = kwargs[key]
             setattr(self, key, value)
 
     def get_standard_resolution_url(self):
@@ -43,7 +46,9 @@ class Media(ApiModel):
 
         new_media.user = User.object_from_dictionary(entry['user'])
         new_media.images = {}
-        for version, version_info in entry['images'].iteritems():
+#        for version, version_info in entry['images'].iteritems():
+        for version in entry['images'].keys():
+            version_info = entry['images'][version]
             new_media.images[version] = Image.object_from_dictionary(version_info)
 
         if 'user_has_liked' in entry:
@@ -83,7 +88,9 @@ class Media(ApiModel):
 class Tag(ApiModel):
     def __init__(self, name, **kwargs):
         self.name = name
-        for key, value in kwargs.iteritems():
+#        for key, value in kwargs.iteritems():
+        for key in kwargs.keys():
+            value = kwargs[key]
             setattr(self, key, value)
 
     def __unicode__(self):
@@ -92,7 +99,9 @@ class Tag(ApiModel):
 
 class Comment(ApiModel):
     def __init__(self, *args, **kwargs):
-        for key, value in kwargs.iteritems():
+#        for key, value in kwargs.iteritems():
+        for key in kwargs.keys():
+            value = kwargs[key]
             setattr(self, key, value)
 
     @classmethod
@@ -119,7 +128,9 @@ class Point(ApiModel):
 class Location(ApiModel):
     def __init__(self, id, *args, **kwargs):
         self.id = id
-        for key, value in kwargs.iteritems():
+#        for key, value in kwargs.iteritems():
+        for key in kwargs.keys():
+            value = kwargs[key]
             setattr(self, key, value)
 
     @classmethod
@@ -141,7 +152,9 @@ class User(ApiModel):
 
     def __init__(self, id, *args, **kwargs):
         self.id = id
-        for key, value in kwargs.iteritems():
+#        for key, value in kwargs.iteritems():
+        for key in kwargs.keys():
+            value = kwargs[key]
             setattr(self, key, value)
 
     def __unicode__(self):
