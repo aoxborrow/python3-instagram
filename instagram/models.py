@@ -56,8 +56,6 @@ class Media(ApiModel):
             for version, version_info in entry['videos'].iteritems():
                 new_media.videos[version] = Image.object_from_dictionary(version_info)
 
-        new_media.type = entry['type']
-
         if 'user_has_liked' in entry:
             new_media.user_has_liked = entry['user_has_liked']
         new_media.like_count = entry['likes']['count']
@@ -87,7 +85,7 @@ class Media(ApiModel):
 
         new_media.type = entry.get('type')
 
-        new_media.link = entry['link']
+        new_media.link = entry.get('link')
 
         new_media.filter = entry.get('filter')
 
