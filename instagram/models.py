@@ -53,7 +53,7 @@ class Media(ApiModel):
 
         if 'videos' in entry:
             new_media.videos = {}
-            for version, version_info in entry['videos'].iteritems():
+            for version, version_info in entry['videos'].items():
                 new_media.videos[version] = Image.object_from_dictionary(version_info)
 
         if 'user_has_liked' in entry:
