@@ -128,7 +128,7 @@ class InstagramAPI(oauth2.OAuth2API):
 
     location_search = bind_method(
                 path="/locations/search",
-                accepts_parameters=SEARCH_ACCEPT_PARAMETERS + ['lat', 'lng', 'foursquare_id'],
+                accepts_parameters=SEARCH_ACCEPT_PARAMETERS + ['lat', 'lng', 'foursquare_id', 'foursquare_v2_id'],
                 root_class=Location)
 
     location = bind_method(
@@ -145,7 +145,7 @@ class InstagramAPI(oauth2.OAuth2API):
 
     tag_recent_media = bind_method(
                 path="/tags/{tag_name}/media/recent",
-                accepts_parameters=MEDIA_ACCEPT_PARAMETERS + ['tag_name'],
+                accepts_parameters=MEDIA_ACCEPT_PARAMETERS + ['tag_name', "next_max_tag_id", "min_tag_id"],
                 root_class=Media,
                 paginates=True)
 

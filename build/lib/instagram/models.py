@@ -51,6 +51,11 @@ class Media(ApiModel):
             version_info = entry['images'][version]
             new_media.images[version] = Image.object_from_dictionary(version_info)
 
+        if 'videos' in entry:
+            new_media.videos = {}
+            for version, version_info in entry['videos'].items():
+                new_media.videos[version] = Image.object_from_dictionary(version_info)
+
         if 'user_has_liked' in entry:
             new_media.user_has_liked = entry['user_has_liked']
         new_media.like_count = entry['likes']['count']
@@ -78,7 +83,9 @@ class Media(ApiModel):
             for tag in entry['tags']:
                 new_media.tags.append(Tag.object_from_dictionary({'name': tag}))
 
-        new_media.link = entry['link']
+        new_media.type = entry.get('type')
+
+        new_media.link = entry.get('link')
 
         new_media.filter = entry.get('filter')
 
