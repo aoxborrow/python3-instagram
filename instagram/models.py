@@ -126,7 +126,6 @@ class UserInPhoto(ApiModel):
 
 class Position(ApiModel):
     def __init__(self, **kwargs):
-        self.name = name
         for key, value in kwargs.iteritems():
             setattr(self, key, value)
 
